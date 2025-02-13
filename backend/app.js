@@ -1,11 +1,14 @@
 const express = require('express')
 const app = express()
-const Dataconnect = require('db')
+const Dataconnect = require('./db')
 require('dotenv').config()
 const port = process.env.PORT || 5000
+const cors = require('cors')
+
+app.use(cors())
 app.use(express.json())
 
-const routes = require('../router')
+const routes = require('./router')
 
 app.use('/api', routes)
 
