@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { login } from './services'
+import { useNavigate } from 'react-router'
 
 function Studentlogin() {
   const [formdata, setformdata] = useState({
-    email_id: '',
+    email: '',
     password: '',
   })
 
@@ -10,10 +12,18 @@ function Studentlogin() {
     setformdata({ ...formdata, [e.target.name]: e.target.value })
   }
 
-  function handlesubmit(e) {
+  const navigate = useNavigate()
+
+  async function handlesubmit(e) {
     e.preventDefault()
     try {
-    } catch (error) {}
+      const { email, password } = formdata
+      await login({ email, password })
+      navigate('/student/home')
+    } catch (error) {
+      console.log(error)
+      alert('Invalid credentials')
+    }
   }
 
   return (
@@ -23,7 +33,7 @@ function Studentlogin() {
         <form className='login-student-form' onSubmit={handlesubmit}>
           <input
             type='email'
-            name='email_id'
+            name='email'
             placeholder='Email ID'
             value={formdata.email_id}
             onChange={handlechange}

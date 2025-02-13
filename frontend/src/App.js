@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router'
 import { Createacc } from './signup'
 import { Studentlogin } from './studentlogin'
 import { Adminlogin } from './adminlogin'
+import { Studenthome } from './studenthome'
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
           <Route path='/register' element={<Createacc />}></Route>
           <Route path='/studentlogin' element={<Studentlogin />}></Route>
           <Route path='/adminlogin' element={<Adminlogin />}></Route>
+          <Route path='/admin/home'></Route>
+          <Route path='/student/home' element={<Studenthome />}></Route>
         </Routes>
       </Router>
     </>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { login } from './services'
+import { useNavigate } from 'react-router'
 
 function Adminlogin() {
   const [formdata, setformdata] = useState({
-    email_id: '',
+    email: '',
     password: '',
   })
 
@@ -10,20 +12,28 @@ function Adminlogin() {
     setformdata({ ...formdata, [e.target.name]: e.target.value })
   }
 
-  function handlesubmit(e) {
+  const navigate = useNavigate()
+
+  async function handlesubmit(e) {
     e.preventDefault()
     try {
-    } catch (error) {}
+      const { email, password } = formdata
+      await login({ email, password })
+      navigate('/admin/login')
+    } catch (error) {
+      console.log(error)
+      alert('Invalid credentials')
+    }
   }
 
   return (
     <>
-      <div className='loginstudentdiv'>
-        <h1 className='loginstudentheader'>Admin login</h1>
-        <form className='login-student-form' onSubmit={handlesubmit}>
+      <div className='loginadmindiv'>
+        <h1 className='loginadminheader'>Admin login</h1>
+        <form className='login-admin-form' onSubmit={handlesubmit}>
           <input
             type='email'
-            name='email_id'
+            name='email'
             placeholder='Email ID'
             value={formdata.email_id}
             onChange={handlechange}

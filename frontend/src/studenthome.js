@@ -1,0 +1,3 @@
+function Studenthome() {}
+
+export { Studenthome }
