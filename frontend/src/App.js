@@ -1,7 +1,23 @@
 import './App.css'
+import { Homepage } from './homepage'
+import { Route, BrowserRouter as Router, Routes } from 'react-router'
+import { Createacc } from './signup'
+import { Studentlogin } from './studentlogin'
+import { Adminlogin } from './adminlogin'
 
 function App() {
-  return <></>
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Homepage />}></Route>
+          <Route path='/register' element={<Createacc />}></Route>
+          <Route path='/studentlogin' element={<Studentlogin />}></Route>
+          <Route path='/adminlogin' element={<Adminlogin />}></Route>
+        </Routes>
+      </Router>
+    </>
+  )
 }
 
 export default App

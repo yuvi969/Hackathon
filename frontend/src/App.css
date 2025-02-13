@@ -1,0 +1,414 @@
+.Homediv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #d4e2f0, #9bb0c9);
+  text-align: center;
+  margin-top: 2px;
+  background-image: url('../public/homepagebackground.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.appname {
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 2px;
+  font-family: 'Teachers', sans-serif;
+  font-weight: 400;
+
+  letter-spacing: 0%;
+  text-align: center;
+
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+  position: relative;
+  font-family: 'Sofia Sans', sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: 0%;
+  text-align: center;
+
+  margin-top: 20px;
+}
+
+h3::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 2px;
+  background-color: black;
+  margin: 10px auto;
+  width: 380px;
+  top: 502px;
+  left: 292px;
+  border-width: 1px;
+}
+
+.Adminloginbutton {
+  background-color: black;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: Sofia Sans;
+  font-weight: 400;
+  color: #8eaaf6;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.studentloginbutton {
+  background-color: black;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: Sofia Sans;
+  font-weight: 400;
+  color: #8eaaf6;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.newacc {
+  text-decoration: none !important;
+  color: #22293d;
+  font-family: Sofia Sans;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 28.8px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.student-login-button {
+  background-color: black;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: Sofia Sans;
+  font-weight: 400;
+  color: #8eaaf6;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+p {
+  margin-top: 10px;
+  color: black;
+  font-style: italic;
+  cursor: pointer;
+}
+
+p:hover {
+  text-decoration: underline;
+}
+
+.createaccdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to right, #ddeeff, #b0c4de);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  background-image: url('../public/loginpagesbackground.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.createaccheader {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  font-family: Teachers;
+  font-weight: 400;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.createaccheader::after {
+  content: '';
+  display: block;
+  width: 180px;
+  height: 2px;
+  background-color: black;
+  margin: 10px auto 0;
+}
+
+.create-new-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.create-new-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.create-new-form input:focus {
+  border-color: #555;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.signupbutton {
+  background-color: black;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: Sofia Sans;
+  font-weight: 400;
+  color: #8eaaf6;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.signupbutton:hover {
+  background-color: #333;
+}
+
+@media (max-width: 768px) {
+  .createaccdiv {
+    padding: 20px;
+  }
+  .createaccheader {
+    font-size: 1.5rem;
+  }
+}
+
+.loginstudentdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to right, #ddeeff, #b0c4de);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  background-image: url('../public/loginpagesbackground.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.loginstudentheader {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  font-family: Teachers;
+  font-weight: 400;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.loginstudentheader::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 2px;
+  background-color: black;
+  margin: 10px auto 0;
+}
+
+.login-student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.login-student-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.login-student-form input:focus {
+  border-color: #555;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.studentloginbutton:hover {
+  background-color: #333;
+}
+
+@media (max-width: 768px) {
+  .loginstudentdiv {
+    padding: 20px;
+  }
+  .loginstudentheader {
+    font-size: 1.5rem;
+  }
+}
+
+.loginadmindiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to right, #ddeeff, #b0c4de);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.loginadminheader {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+  font-family: Teachers;
+  font-weight: 400;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.loginadminheader::after {
+  content: '';
+  display: block;
+  width: 200px;
+  height: 2px;
+  background-color: black;
+  margin: 10px auto 0;
+}
+
+.login-admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.login-admin-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  align-items: center;
+}
+
+.login-admin-form input:focus {
+  border-color: #555;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.adminloginbutton {
+  background-color: black;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: Sofia Sans;
+  font-weight: 400;
+  color: #8eaaf6;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.adminloginbutton:hover {
+  background-color: #333;
+}
+
+@media (max-width: 768px) {
+  .loginadmindiv {
+    padding: 20px;
+  }
+  .loginadminheader {
+    font-size: 1.5rem;
+  }
+}
+
+.login-student-form,
+.login-admin-form,
+.create-new-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
