@@ -4,7 +4,9 @@ function Homepage() {
     <>
       <div className='Homediv'>
         <h1 className='appname'>OVERCLOCKERS</h1>
-        <h3>Transparent Testing Solutions</h3>
+        <div className='subtitle-container'>
+          <h3>Transparent Testing Solutions</h3>
+        </div>
         <div className='buttoncontainer'>
           <Link to={'/adminlogin'}>
             <button className='Adminloginbutton'>Admin Login</button>
