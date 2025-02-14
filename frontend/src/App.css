@@ -151,7 +151,7 @@ h3::after {
 }
 
 .student-login-button {
-  background-color: black;
+  background-color: #22293d;
   color: white;
   width: 200px;
   padding: 10px;
@@ -175,7 +175,7 @@ button:hover {
 
 p {
   margin-top: 10px;
-  color: black;
+  color: #22293d;
   font-style: italic;
   cursor: pointer;
 }
@@ -202,7 +202,7 @@ p:hover {
 .createaccheader {
   font-size: 2rem;
   font-weight: bold;
-  color: #222;
+  color: #22293d;
   margin-bottom: 10px;
   text-align: center;
   position: relative;
@@ -217,7 +217,7 @@ p:hover {
   display: block;
   width: 180px;
   height: 2px;
-  background-color: black;
+  background-color: #22293d;
   margin: 10px auto 0;
 }
 
@@ -247,7 +247,7 @@ p:hover {
 }
 
 .signupbutton {
-  background-color: black;
+  background-color: #22293d;
   color: white;
   width: 200px;
   padding: 10px;
@@ -295,7 +295,7 @@ p:hover {
 .loginstudentheader {
   font-size: 2rem;
   font-weight: bold;
-  color: #222;
+  color: #22293d;
   margin-bottom: 10px;
   text-align: center;
   position: relative;
@@ -310,7 +310,7 @@ p:hover {
   display: block;
   width: 60%;
   height: 2px;
-  background-color: black;
+  background-color: #22293d;
   margin: 10px auto 0;
 }
 
@@ -382,7 +382,7 @@ p:hover {
   display: block;
   width: 200px;
   height: 2px;
-  background-color: black;
+  background-color: #22293d;
   margin: 10px auto 0;
 }
 
@@ -413,7 +413,7 @@ p:hover {
 }
 
 .adminloginbutton {
-  background-color: black;
+  background-color: #22293d;
   color: white;
   width: 200px;
   padding: 10px;
