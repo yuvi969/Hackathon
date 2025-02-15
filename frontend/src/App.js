@@ -5,6 +5,9 @@ import { Createacc } from './signup'
 import { Studentlogin } from './studentlogin'
 import { Adminlogin } from './adminlogin'
 import { Studenthome } from './studenthome'
+import { AdminHome } from './adminapphomepage'
+import UploadAnswerSheet from './uploadstudentans'
+import AddExam from './addcorrectans'
 
 function App() {
   return (
@@ -15,8 +18,13 @@ function App() {
           <Route path='/register' element={<Createacc />}></Route>
           <Route path='/studentlogin' element={<Studentlogin />}></Route>
           <Route path='/adminlogin' element={<Adminlogin />}></Route>
-          <Route path='/admin/home'></Route>
+          <Route path='/admin/home' element={<AdminHome />}></Route>
           <Route path='/student/home' element={<Studenthome />}></Route>
+          <Route
+            path='/admin/home/uploadans'
+            element={<UploadAnswerSheet />}
+          ></Route>
+          <Route path='/admin/home/add-exam' element={<AddExam />}></Route>
         </Routes>
       </Router>
     </>

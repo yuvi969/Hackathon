@@ -19,7 +19,7 @@ function Adminlogin() {
     try {
       const { email, password } = formdata
       await login({ email, password })
-      navigate('/admin/login')
+      navigate('/admin/home')
     } catch (error) {
       console.log(error)
       alert('Invalid credentials')
