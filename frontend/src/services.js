@@ -65,4 +65,38 @@ const getstudentpaper = async (studentid) => {
   return await axios.get(`${URl}/getstudentpaper/${studentid}`)
 }
 
-export { registernewuser, login, getexam, uploadexam, addexam, getstudentpaper }
+const deleteExam = async (id) => {
+  return await axios.delete(`${URl}/deleteexam/${id}`)
+}
+
+const getExamById = async (id) => {
+  try {
+    const response = await axios.get(`${URl}/getexam/${id}`)
+    return response.data
+  } catch (error) {
+    console.error('Error fetching exam:', error)
+    throw error
+  }
+}
+
+const updateExam = async (id, updatedData) => {
+  try {
+    const response = await axios.patch(`${URl}/editexam/${id}`, updatedData)
+    return response.data
+  } catch (error) {
+    console.error('Error updating exam:', error)
+    throw error
+  }
+}
+
+export {
+  registernewuser,
+  login,
+  getexam,
+  uploadexam,
+  addexam,
+  getstudentpaper,
+  deleteExam,
+  getExamById,
+  updateExam,
+}
