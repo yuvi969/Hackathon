@@ -46,19 +46,23 @@ function Createacc() {
             onChange={handlechange}
             required
           />
-          <input
-            type='text'
+          <select
             name='role'
-            placeholder='Enter your role'
             value={formdata.role}
             onChange={handlechange}
             required
-          />
+          >
+            <option value='' disabled>
+              Select Role
+            </option>
+            <option value='admin'>Admin</option>
+            <option value='student'>Student</option>
+          </select>
           <input
             type='email'
             name='email'
             placeholder='Email ID'
-            value={formdata.email} // Fixed here
+            value={formdata.email}
             onChange={handlechange}
             required
           />

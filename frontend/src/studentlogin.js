@@ -18,10 +18,19 @@ function Studentlogin() {
     e.preventDefault()
     try {
       const { email, password } = formdata
-      await login({ email, password })
-      navigate('/student/home')
+      const response = await login({ email, password })
+
+      console.log('Full API Response:', response)
+
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token)
+        console.log('Token stored:', response.data.token)
+        navigate('/student/home')
+      } else {
+        console.error('No token received from backend')
+      }
     } catch (error) {
-      console.log(error)
+      console.log('Login error:', error)
       alert('Invalid credentials')
     }
   }
@@ -35,10 +44,11 @@ function Studentlogin() {
             type='email'
             name='email'
             placeholder='Email ID'
-            value={formdata.email_id}
+            value={formdata.email}
             onChange={handlechange}
             required
-          ></input>
+          />
+
           <input
             type='password'
             name='password'
