@@ -8,6 +8,7 @@ import { Studenthome } from './studenthome'
 import { AdminHome } from './adminapphomepage'
 import UploadAnswerSheet from './uploadstudentans'
 import AddExam from './addcorrectans'
+import { EditExam } from './editexam'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             element={<UploadAnswerSheet />}
           ></Route>
           <Route path='/admin/home/add-exam' element={<AddExam />}></Route>
+          <Route path='/admin/home/editexam/:id' element={<EditExam />}></Route>
         </Routes>
       </Router>
     </>

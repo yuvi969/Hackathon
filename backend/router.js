@@ -71,11 +71,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
-
-
-
-
 router.get('/getexam', async (req, res) => {
   try {
     const exams = await Exam.find()
@@ -152,3 +147,41 @@ router.get('/getstudentpaper/:studentid', async (req, res) => {
 })
 
 module.exports = router;
+
+router.delete('/deleteexam/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const result = await Exam.deleteOne({ _id: id });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ success: false, message: 'Exam not found' });
+    }
+
+    res.json({ success: true, message: 'Exam deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting exam:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+router.get('/getexam/:id', async (req, res) => {
+  try {
+    const examId = req.params.id;
+    const exam = await Exam.findById(examId);
+
+    if (!exam) {
+      return res.status(404).json({ success: false, message: 'Exam not found' });
+    }
+
+    res.status(200).json({ success: true, exam });
+  } catch (error) {
+    console.error('Error fetching exam:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
+
+
+module.exports = router

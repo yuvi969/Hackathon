@@ -1,36 +1,47 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getexam } from './services'
+import { getexam, deleteExam } from './services'
 
 function AdminHome() {
   const [exams, setExams] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     async function fetchExams() {
       try {
+        setLoading(true)
         const response = await getexam()
-        console.log('API Response:', response)
         if (response.data.success && Array.isArray(response.data.exams)) {
           setExams(response.data.exams)
         } else {
-          console.error('Unexpected API response format:', response.data)
+          setError('Unexpected API response format.')
         }
       } catch (error) {
-        console.error('Error fetching exams:', error)
+        setError('Error fetching exams.')
+      } finally {
+        setLoading(false)
       }
     }
     fetchExams()
   }, [])
 
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure you want to delete this exam?')) {
+      try {
+        await deleteExam(id)
+        setExams((prev) => prev.filter((exam) => exam._id !== id))
+      } catch (error) {
+        alert('Error deleting exam.')
+      }
+    }
+  }
+
   return (
     <div className='admin-container'>
       <header className='admin-header'>
         <div className='account-section'>
-          <img
-            className='profile-img'
-            src='https://s3-alpha-sig.figma.com/img/e10e/febf/f4cca33f517e65ec1d5f085c783594a1?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=k-hAah9RVlf~afzPTSm52ZMD-2OLuCu07w8LFYIHZCIE~3dnUsbFefly9eK8HZSyyy4tSzr3sMSbrw~hrwh4Ao3waec5-j-sfZYeJ8xyw48oI2kpEwMSyo3sde34gQ5QLlVHA37fJEpZxmNkwXr-KJjrCfa7KP9Je4TOdcKeU~8miAGxEe5fqVpCE1YATVz-sXM8CYLiRlOwJULRMMIU5bOhrRfCJLz0rJzFXtecvttbCcPDJ9QAxFg23Cl~G-kA3P89Yhc9~lzJLZcWz34Z2Ap9NAlXrbSQgsyqnjiDXE3~TYNg~2yjy6ZdteOfD8BVy7IECN8JsqbU1KBE6Ul7~A__'
-            alt='Profile'
-          />
+          <img className='profile-img' src='profile-image-url' alt='Profile' />
           <Link to={'/admin/home/account'} className='account-link'>
             <h2 className='account'>Account</h2>
           </Link>
@@ -43,10 +54,15 @@ function AdminHome() {
       </div>
 
       <div className='exams-section'>
-        <h2 className='subheading'>Your Exams:</h2>
-        <div className='exams-container'>
-          {exams.length > 0 ? (
-            exams.map((exam) => (
+        <h2 className='subheading'>Your Exams ({exams.length})</h2>
+
+        {loading ? (
+          <p>Loading exams...</p>
+        ) : error ? (
+          <p className='error'>{error}</p>
+        ) : exams.length > 0 ? (
+          <div className='exams-container'>
+            {exams.map((exam) => (
               <div key={exam._id} className='exam-card'>
                 <h3>{exam.name}</h3>
                 <p>
@@ -56,12 +72,23 @@ function AdminHome() {
                   <strong>Date:</strong>{' '}
                   {new Date(exam.date).toLocaleDateString()}
                 </p>
+                <div className='exam-actions'>
+                  <Link to={`/admin/home/editexam/${exam._id}`}>
+                    <button className='edit-btn'>Edit</button>
+                  </Link>
+                  <button
+                    className='delete-btn'
+                    onClick={() => handleDelete(exam._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            ))
-          ) : (
-            <p>No exams available</p>
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <p>No exams available</p>
+        )}
 
         <Link to={'/admin/home/add-exam'}>
           <button className='adminhomebutton'>
