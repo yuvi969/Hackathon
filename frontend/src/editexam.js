@@ -1,48 +1,31 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getExamById, updateExam } from './services'
+import './editexam.css'
 
 function EditExam() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [exam, setExam] = useState({ name: '', subject: '', date: '' })
+  const [subject, setSubject] = useState('')
+  const [questions, setQuestions] = useState([])
+  const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   useEffect(() => {
-    if (!id) {
-      setError('Invalid Exam ID')
-      setLoading(false)
-      return
-    }
-
     async function fetchExam() {
       try {
         setLoading(true)
         const response = await getExamById(id)
 
-        console.log('Full API Response:', response)
-
-        if (
-          response &&
-          response.data &&
-          response.data.success &&
-          response.data.exam
-        ) {
-          const examData = response.data.exam
-
-          // Format date properly for input type="date"
-          const formattedDate = examData.date
-            ? new Date(examData.date).toISOString().split('T')[0]
-            : ''
-
-          setExam({ ...examData, date: formattedDate })
-          setError('') // Clear any previous errors
+        if (response && response.exam) {
+          setSubject(response.exam.subject || '')
+          setQuestions(response.exam.questions || [])
         } else {
           setError('Exam not found.')
         }
       } catch (error) {
-        console.error('Fetch error:', error)
+        console.error(error)
         setError('Error fetching exam.')
       } finally {
         setLoading(false)
@@ -52,66 +35,184 @@ function EditExam() {
     fetchExam()
   }, [id])
 
-  const handleChange = (e) => {
-    setExam({ ...exam, [e.target.name]: e.target.value })
+  const handleQuestionChange = (index, value) => {
+    const updatedQuestions = [...questions]
+    updatedQuestions[index].question = value
+    setQuestions(updatedQuestions)
+  }
+
+  const handleKeyValueChange = (qIndex, kvIndex, field, value) => {
+    const updatedQuestions = [...questions]
+    updatedQuestions[qIndex].keyValues[kvIndex][field] = value
+    setQuestions(updatedQuestions)
+  }
+
+  const addQuestion = () => {
+    setQuestions([
+      ...questions,
+      { question: '', keyValues: [{ key: '', value: '', maxMarks: '' }] },
+    ])
+  }
+
+  const addKeyValuePair = (qIndex) => {
+    const updatedQuestions = [...questions]
+    updatedQuestions[qIndex].keyValues.push({
+      key: '',
+      value: '',
+      maxMarks: '',
+    })
+    setQuestions(updatedQuestions)
+  }
+
+  const deleteQuestion = (index) => {
+    setQuestions(questions.filter((_, i) => i !== index))
+  }
+
+  const deleteKeyValuePair = (qIndex, kvIndex) => {
+    const updatedQuestions = [...questions]
+    updatedQuestions[qIndex].keyValues = updatedQuestions[
+      qIndex
+    ].keyValues.filter((_, i) => i !== kvIndex)
+    setQuestions(updatedQuestions)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (
+      !subject ||
+      questions.some(
+        (q) =>
+          !q.question ||
+          q.keyValues.some((kv) => !kv.key || !kv.value || !kv.maxMarks)
+      )
+    ) {
+      setMessage('Please fill in all fields!')
+      return
+    }
+
     try {
-      await updateExam(id, exam)
-      alert('Exam updated successfully!')
+      await updateExam(id, { subject, questions })
+      setMessage('Exam updated successfully!')
       navigate('/admin/home')
     } catch (error) {
-      console.error('Update error:', error)
-      alert('Error updating exam.')
+      console.error(error)
+      setMessage('Error updating exam.')
     }
   }
 
   if (loading) {
-    return <p>Loading...</p>
+    return <p className='loading-text'>Loading...</p>
   }
 
   return (
     <div className='edit-exam-container'>
-      <h2>Edit Exam</h2>
-      {error ? (
-        <p className='error'>{error}</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
+      <h2 className='edit-exam-title'>Edit Exam</h2>
+      {error && <p className='error-message'>{error}</p>}
+      <form className='edit-exam-form' onSubmit={handleSubmit}>
+        <label className='exam-label'>Subject Name:</label>
+        <input
+          type='text'
+          className='exam-input'
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          required
+        />
+
+        <h3 className='questions-title'>
+          Edit Questions with Key-Value Pairs and Max Marks:
+        </h3>
+        {questions.map((q, qIndex) => (
+          <div key={qIndex} className='question-container'>
             <input
               type='text'
-              name='name'
-              value={exam.name}
-              onChange={handleChange}
+              className='question-input'
+              value={q.question}
+              onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
+              placeholder='Enter question'
               required
             />
-          </label>
-          <label>
-            Subject:
-            <input
-              type='text'
-              name='subject'
-              value={exam.subject}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Date:
-            <input
-              type='date'
-              name='date'
-              value={exam.date}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <button type='submit'>Update Exam</button>
-        </form>
-      )}
+            <button
+              type='button'
+              className='delete-question-btn'
+              onClick={() => deleteQuestion(qIndex)}
+            >
+              Delete Question
+            </button>
+
+            {q.keyValues.map((kv, kvIndex) => (
+              <div key={kvIndex} className='key-value-pair'>
+                <input
+                  type='text'
+                  className='key-input'
+                  value={kv.key}
+                  onChange={(e) =>
+                    handleKeyValueChange(qIndex, kvIndex, 'key', e.target.value)
+                  }
+                  placeholder='Key'
+                  required
+                />
+                <input
+                  type='text'
+                  className='value-input'
+                  value={kv.value}
+                  onChange={(e) =>
+                    handleKeyValueChange(
+                      qIndex,
+                      kvIndex,
+                      'value',
+                      e.target.value
+                    )
+                  }
+                  placeholder='Value'
+                  required
+                />
+                <input
+                  type='number'
+                  className='marks-input'
+                  value={kv.maxMarks}
+                  onChange={(e) =>
+                    handleKeyValueChange(
+                      qIndex,
+                      kvIndex,
+                      'maxMarks',
+                      e.target.value
+                    )
+                  }
+                  placeholder='Max Marks'
+                  required
+                />
+                <button
+                  type='button'
+                  className='delete-kv-btn'
+                  onClick={() => deleteKeyValuePair(qIndex, kvIndex)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+
+            <button
+              type='button'
+              className='add-kv-btn'
+              onClick={() => addKeyValuePair(qIndex)}
+            >
+              Add More Key-Value
+            </button>
+          </div>
+        ))}
+
+        <button
+          type='button'
+          className='add-question-btn'
+          onClick={addQuestion}
+        >
+          Add Another Question
+        </button>
+        <button type='submit' className='submit-exam-btn'>
+          Update Exam
+        </button>
+      </form>
+      {message && <p className='success-message'>{message}</p>}
     </div>
   )
 }

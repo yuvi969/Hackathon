@@ -106,10 +106,6 @@ router.post('/add-exam', auth, async (req, res) => {
   }
 });
 
-
-
-
-
 const storage = multer.diskStorage({
   destination: "./uploads/",
   filename: (req, file, cb) => {
@@ -180,6 +176,19 @@ router.get('/getexam/:id', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
+router.patch('/editexam/:id',async(req,res)=>{
+  try {
+    const id = req.params.id
+    const editexam = await Exam.findByIdAndUpdate(id,{$set:req.body},{new:true})
+    if(!id){
+      res.status(404).json({msg:"Exam not found"})
+    }
+    res.status(200).json({msg:"Edited successfully"})
+  } catch (error) {
+    res.status(500).json({msg:"Server error"})
+  }
+})
 
 
 

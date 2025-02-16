@@ -1,0 +1,146 @@
+body {
+  background-image: url('../public/ce4cb34bad0705e27315bb0286957b96.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  font-family: 'Teachers', sans-serif;
+}
+
+.edit-exam-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  color: #ffffff;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.edit-exam-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #00b894;
+}
+
+.error-message,
+.success-message {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+}
+
+.error-message {
+  background: #ff4d4d;
+  color: white;
+}
+
+.success-message {
+  background: #4caf50;
+  color: white;
+}
+
+.edit-exam-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.exam-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.exam-input,
+.question-input,
+.key-input,
+.value-input,
+.marks-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 1px solid #aab0c6;
+  background: rgba(58, 58, 58, 0.8);
+  color: white;
+  margin: 5px;
+}
+
+.questions-title {
+  font-size: 1.8rem;
+  margin-top: 1.5rem;
+  color: #aab0c6;
+}
+
+.question-container {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.key-value-pair {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.delete-question-btn,
+.delete-kv-btn,
+.add-kv-btn,
+.add-question-btn,
+.submit-exam-btn {
+  margin-top: 5px;
+  cursor: pointer;
+  padding: 0.75rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.delete-question-btn,
+.delete-kv-btn {
+  background: #ff4d4d;
+  color: white;
+  margin: 5px;
+  margin-top: 4px;
+}
+
+.delete-question-btn:hover,
+.delete-kv-btn:hover {
+  background: #cc0000;
+}
+
+.add-kv-btn,
+.add-question-btn {
+  background: #00b894;
+  color: white;
+}
+
+.add-kv-btn:hover,
+.add-question-btn:hover {
+  background: #008374;
+}
+
+.submit-exam-btn {
+  background: #4caf50;
+  color: white;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.submit-exam-btn:hover {
+  background: #388e3c;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #aab0c6;
+}

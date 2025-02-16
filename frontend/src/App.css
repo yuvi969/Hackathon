@@ -1,22 +1,15 @@
-/* Remove default margin and padding */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Teachers', sans-serif;
-  /* font-size: 2.25rem; */
 }
 
-/* Ensure full viewport coverage */
 html,
 body {
   width: 100%;
   height: 100%;
-  background-color: linear-gradient(
-    135deg,
-    #d4e2f0,
-    #9bb0c9
-  ); /* Ensure the background color matches */
+  background-color: linear-gradient(135deg, #d4e2f0, #9bb0c9);
   overflow-x: hidden;
 }
 
