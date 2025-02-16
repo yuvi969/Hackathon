@@ -5,6 +5,7 @@ import './uploadans.css'
 function UploadAnswerSheet() {
   const [examId, setExamId] = useState('')
   const [studentName, setStudentName] = useState('')
+  const [studentEmail, setStudentEmail] = useState('')
   const [file, setFile] = useState(null)
   const [message, setMessage] = useState('')
   const [exams, setExams] = useState([])
@@ -25,7 +26,7 @@ function UploadAnswerSheet() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!file || !examId || !studentName) {
+    if (!file || !examId || !studentName || !studentEmail) {
       setMessage('Please fill in all fields!')
       return
     }
@@ -33,6 +34,7 @@ function UploadAnswerSheet() {
     const formData = new FormData()
     formData.append('examId', examId)
     formData.append('studentName', studentName)
+    formData.append('studentEmail', studentEmail)
     formData.append('answerSheet', file)
 
     try {
@@ -64,7 +66,6 @@ function UploadAnswerSheet() {
             </option>
           ))}
         </select>
-
         <label className='upload-label'>Student Name:</label>
         <input
           type='text'
@@ -73,7 +74,14 @@ function UploadAnswerSheet() {
           onChange={(e) => setStudentName(e.target.value)}
           required
         />
-
+        <label className='upload-label'>Student Email:</label>{' '}
+        <input
+          type='email'
+          className='upload-input'
+          value={studentEmail}
+          onChange={(e) => setStudentEmail(e.target.value)}
+          required
+        />
         <label className='upload-label'>Upload PDF:</label>
         <input
           type='file'
@@ -82,7 +90,6 @@ function UploadAnswerSheet() {
           onChange={handleFileChange}
           required
         />
-
         <button className='upload-btn' type='submit'>
           Upload
         </button>

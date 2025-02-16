@@ -24,6 +24,7 @@ function Studentlogin() {
 
       if (response.data.token) {
         localStorage.setItem('token', response.data.token)
+        localStorage.setItem('userId', response.data.user.id)
         console.log('Token stored:', response.data.token)
         navigate('/student/home')
       } else {

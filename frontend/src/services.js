@@ -61,6 +61,10 @@ const addexam = async (examData) => {
   }
 }
 
+const getUser = async (id) => {
+  return await axios.get(`${URl}/getuser/${id}`)
+}
+
 const getstudentpaper = async (studentid) => {
   return await axios.get(`${URl}/getstudentpaper/${studentid}`)
 }
@@ -99,4 +103,5 @@ export {
   deleteExam,
   getExamById,
   updateExam,
+  getUser,
 }

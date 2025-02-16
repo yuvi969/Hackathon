@@ -1,0 +1,192 @@
+.admin-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  border-radius: 0.625rem;
+  width: 100%;
+}
+
+.account-section {
+  display: flex;
+  align-items: center;
+  gap: 0.63rem;
+}
+
+.profile-img {
+  width: 3.94rem;
+  height: 3.94rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account {
+  font-size: 2.25rem;
+  color: #aab0c6;
+  font-weight: 400;
+  font-family: 'Teachers', sans-serif;
+  line-height: 2.7rem;
+}
+
+.admin-container {
+  background-image: url('../public/ce4cb34bad0705e27315bb0286957b96.png');
+  background-size: 100% 100%;
+  background-position: center;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.welcome-section {
+  margin-top: 10.56rem;
+  margin-left: 9.13rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.welcome-text {
+  font-size: 8rem;
+  font-weight: 400;
+  font-family: 'Teachers', sans-serif;
+  line-height: 9.6rem;
+  color: #ffffff;
+  white-space: nowrap;
+  width: 100%;
+  height: auto;
+}
+
+.underline {
+  width: 80.69rem;
+  height: 0.063rem;
+  background-color: #aab0c6;
+  border: none;
+  margin-top: 0.5rem;
+  max-width: 100%;
+}
+
+.exams-section {
+  margin-top: 3rem;
+  margin-left: 9.13rem;
+  color: #ffffff;
+  font-family: 'Teachers', sans-serif;
+  width: 80%;
+}
+
+.subheading {
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 3.6rem;
+  color: #aab0c6;
+  margin-bottom: 1rem;
+}
+
+.exams-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+}
+
+.exam-card {
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.exam-card:hover {
+  transform: translateY(-5px);
+}
+
+.exam-card h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.exam-card p {
+  font-size: 1.5rem;
+  color: #aab0c6;
+  margin-bottom: 0.5rem;
+}
+
+.exam-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.edit-btn,
+.delete-btn {
+  font-size: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-btn {
+  background-color: #0077ff;
+  color: #ffffff;
+}
+
+.edit-btn:hover {
+  background-color: #005fcc;
+}
+
+.delete-btn {
+  background-color: #ff3b30;
+  color: #ffffff;
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}
+
+.adminhomebutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #00b894;
+  color: white;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.625rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 2rem;
+  text-decoration: none !important;
+}
+
+.adminhomebutton:hover {
+  background-color: #008374;
+}
+
+.plus-img {
+  width: 2rem;
+  height: 2rem;
+}
+
+.add-subject-btn {
+  display: block;
+  margin-top: 1rem;
+}
+
+.add-subject-btn a,
+.adminhomebutton a {
+  text-decoration: none !important;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
