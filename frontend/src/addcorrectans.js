@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { addexam } from './services'
+import './addexam.css'
 
 function AddExam() {
   const [subject, setSubject] = useState('')
@@ -65,31 +66,36 @@ function AddExam() {
   }
 
   return (
-    <div>
-      <h2>Add New Exam</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Subject Name:</label>
+    <div className='add-exam-container'>
+      <h2 className='add-exam-title'>Add New Exam</h2>
+      <form className='add-exam-form' onSubmit={handleSubmit}>
+        <label className='exam-label'>Subject Name:</label>
         <input
           type='text'
+          className='exam-input'
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           required
         />
 
-        <h3>Enter Questions with Key-Value Pairs and Max Marks:</h3>
+        <h3 className='questions-title'>
+          Enter Questions with Key-Value Pairs and Max Marks:
+        </h3>
         {questions.map((q, qIndex) => (
-          <div key={qIndex}>
+          <div className='question-container' key={qIndex}>
             <input
               type='text'
+              className='question-input'
               value={q.question}
               onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
               placeholder='Enter question'
               required
             />
             {q.keyValues.map((kv, kvIndex) => (
-              <div key={kvIndex}>
+              <div className='key-value-pair' key={kvIndex}>
                 <input
                   type='text'
+                  className='key-input'
                   value={kv.key}
                   onChange={(e) =>
                     handleKeyValueChange(qIndex, kvIndex, 'key', e.target.value)
@@ -99,6 +105,7 @@ function AddExam() {
                 />
                 <input
                   type='text'
+                  className='value-input'
                   value={kv.value}
                   onChange={(e) =>
                     handleKeyValueChange(
@@ -113,6 +120,7 @@ function AddExam() {
                 />
                 <input
                   type='number'
+                  className='marks-input'
                   value={kv.maxMarks}
                   onChange={(e) =>
                     handleKeyValueChange(
@@ -125,7 +133,11 @@ function AddExam() {
                   placeholder='Max Marks'
                   required
                 />
-                <button type='button' onClick={() => addKeyValuePair(qIndex)}>
+                <button
+                  type='button'
+                  className='add-kv-btn'
+                  onClick={() => addKeyValuePair(qIndex)}
+                >
                   Add More Key-Value
                 </button>
               </div>
@@ -133,12 +145,26 @@ function AddExam() {
           </div>
         ))}
 
-        <button type='button' onClick={addQuestion}>
+        <button
+          type='button'
+          className='add-question-btn'
+          onClick={addQuestion}
+        >
           Add Another Question
         </button>
-        <button type='submit'>Submit</button>
+        <button type='submit' className='submit-exam-btn'>
+          Submit
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && (
+        <p
+          className={
+            message.includes('Error') ? 'error-message' : 'success-message'
+          }
+        >
+          {message}
+        </p>
+      )}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { uploadexam } from './services'
-import { getexam } from './services'
+import { uploadexam, getexam } from './services'
+import './uploadans.css'
 
 function UploadAnswerSheet() {
   const [examId, setExamId] = useState('')
@@ -10,7 +10,7 @@ function UploadAnswerSheet() {
   const [exams, setExams] = useState([])
 
   useEffect(() => {
-    async function fetchExams() {
+    const fetchExams = async () => {
       try {
         const response = await getexam()
         setExams(response.data.exams)
@@ -18,17 +18,13 @@ function UploadAnswerSheet() {
         setMessage('Failed to load exams.')
       }
     }
-
     fetchExams()
   }, [])
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0])
-  }
+  const handleFileChange = (e) => setFile(e.target.files[0])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     if (!file || !examId || !studentName) {
       setMessage('Please fill in all fields!')
       return
@@ -51,11 +47,12 @@ function UploadAnswerSheet() {
   }
 
   return (
-    <div>
-      <h2>Upload Student Answer Sheet</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Exam:</label>
+    <div className='upload-container'>
+      <h2 className='upload-title'>Upload Student Answer Sheet</h2>
+      <form className='upload-form' onSubmit={handleSubmit}>
+        <label className='upload-label'>Exam:</label>
         <select
+          className='upload-select'
           value={examId}
           onChange={(e) => setExamId(e.target.value)}
           required
@@ -68,25 +65,37 @@ function UploadAnswerSheet() {
           ))}
         </select>
 
-        <label>Student Name:</label>
+        <label className='upload-label'>Student Name:</label>
         <input
           type='text'
+          className='upload-input'
           value={studentName}
           onChange={(e) => setStudentName(e.target.value)}
           required
         />
 
-        <label>Upload PDF:</label>
+        <label className='upload-label'>Upload PDF:</label>
         <input
           type='file'
+          className='upload-file'
           accept='application/pdf'
           onChange={handleFileChange}
           required
         />
 
-        <button type='submit'>Upload</button>
+        <button className='upload-btn' type='submit'>
+          Upload
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && (
+        <p
+          className={`upload-message ${
+            message.includes('successfully') ? 'upload-success' : 'upload-error'
+          }`}
+        >
+          {message}
+        </p>
+      )}
     </div>
   )
 }

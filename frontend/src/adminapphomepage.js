@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getexam, deleteExam } from './services'
+import './adminhome.css'
 
 function AdminHome() {
   const [exams, setExams] = useState([])
@@ -41,10 +42,13 @@ function AdminHome() {
     <div className='admin-container'>
       <header className='admin-header'>
         <div className='account-section'>
-          <img className='profile-img' src='profile-image-url' alt='Profile' />
-          <Link to={'/admin/home/account'} className='account-link'>
-            <h2 className='account'>Account</h2>
-          </Link>
+          <img
+            className='profile-img'
+            src='https://s3-alpha-sig.figma.com/img/e10e/febf/f4cca33f517e65ec1d5f085c783594a1?Expires=1740355200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=k-hAah9RVlf~afzPTSm52ZMD-2OLuCu07w8LFYIHZCIE~3dnUsbFefly9eK8HZSyyy4tSzr3sMSbrw~hrwh4Ao3waec5-j-sfZYeJ8xyw48oI2kpEwMSyo3sde34gQ5QLlVHA37fJEpZxmNkwXr-KJjrCfa7KP9Je4TOdcKeU~8miAGxEe5fqVpCE1YATVz-sXM8CYLiRlOwJULRMMIU5bOhrRfCJLz0rJzFXtecvttbCcPDJ9QAxFg23Cl~G-kA3P89Yhc9~lzJLZcWz34Z2Ap9NAlXrbSQgsyqnjiDXE3~TYNg~2yjy6ZdteOfD8BVy7IECN8JsqbU1KBE6Ul7~A__'
+            alt='Profile'
+          />
+
+          <h2 className='account'>Account</h2>
         </div>
       </header>
 
