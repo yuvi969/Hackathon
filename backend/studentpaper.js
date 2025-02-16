@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const StudentPaperSchema = new mongoose.Schema({
-  exam: { type: mongoose.Schema.Types.ObjectId, ref: "Exam", required: true }, 
-  student: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, 
-  pdfUrl: { type: String, required: true }, 
-  status: { type: String, enum: ["Pending", "Reviewed"], default: "Pending" }, 
-  evaluatedScore: { type: mongoose.Schema.Types.ObjectId, ref: "EvaluationResult" } 
+const studentPaperSchema = new mongoose.Schema({
+  studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  examId: { type: mongoose.Schema.Types.ObjectId, ref: 'Exam', required: true },
+  studentName: { type: String, required: true },
+  filePath: { type: String, required: true },
+  submittedAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("StudentPaper", StudentPaperSchema);
+module.exports = mongoose.model('StudentPaper', studentPaperSchema);

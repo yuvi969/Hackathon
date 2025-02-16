@@ -7,6 +7,8 @@ const StudentPaper = require('./studentpaper.js')
 const EvaluationResult = require('./evaluation.js')
 const router = express.Router()
 const multer = require("multer");
+const mongoose = require("mongoose");
+
 require('dotenv').config()
 
 
@@ -71,6 +73,20 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get("/getuser/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error!" });
+  }
+});
+
+
 router.get('/getexam', async (req, res) => {
   try {
     const exams = await Exam.find()
@@ -118,31 +134,66 @@ const upload = multer({ storage });
 
 router.post("/uploadstudentanswersheet", upload.single("answerSheet"), async (req, res) => {
   try {
-    console.log(req.body.examId);
-    console.log(req.body.studentName);
-    console.log(req.file.path);
+    const { examId, studentName, studentEmail } = req.body; 
 
-    res.json({ message: "File uploaded successfully!" });
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded!" });
+    }
+
+    const student = await User.findOne({ email: studentEmail });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found!" });
+    }
+
+    const studentId = student._id; 
+
+    const newPaper = new StudentPaper({
+      examId, 
+      studentId, 
+      studentName,
+      filePath: req.file.path,
+    });
+
+    await newPaper.save();
+
+    res.json({ message: "File uploaded and saved successfully!", newPaper });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Upload failed!" });
   }
 });
 
 
-router.get('/getstudentpaper/:studentid', async (req, res) => {
-  try {
-    const paper = await StudentPaper.findById(req.params.studentid);
-    if (!paper) {
-      return res.status(404).json({ msg: "Paper not found" });
-    } else {
-      return res.status(200).json({ msg: "Found", paper });
-    }
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-})
 
-module.exports = router;
+const { ObjectId } = require('mongoose').Types;
+
+router.get("/getstudentpaper/:studentId", async (req, res) => {
+  try {
+    const { studentId } = req.params;
+
+    if (!studentId) {
+      return res.status(400).json({ message: "Student ID is required" });
+    }
+
+    const papers = await StudentPaper.find({ studentId: new ObjectId(studentId) });
+
+    if (!papers.length) {
+      return res.status(404).json({ message: "No checked papers found" });
+    }
+
+    res.json({ success: true, papers });
+  } catch (error) {
+    console.error("Error fetching student papers:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+
+
+
+
 
 router.delete('/deleteexam/:id', async (req, res) => {
   try {
