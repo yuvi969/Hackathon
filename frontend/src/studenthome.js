@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getstudentpaper, getUser } from './services'
-import './adminhome.css'
+import './studenthome.css'
 
 function Studenthome() {
   const [papers, setPapers] = useState([])
