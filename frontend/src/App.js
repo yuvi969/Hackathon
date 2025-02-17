@@ -9,6 +9,7 @@ import { AdminHome } from './adminapphomepage'
 import UploadAnswerSheet from './uploadstudentans'
 import AddExam from './addcorrectans'
 import { EditExam } from './editexam'
+import PdfViewer from './viewpdf'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/adminlogin' element={<Adminlogin />}></Route>
           <Route path='/admin/home' element={<AdminHome />}></Route>
           <Route path='/student/home' element={<Studenthome />}></Route>
+          <Route path='/view-pdf/:filePath' element={PdfViewer} />
           <Route
             path='/admin/home/uploadans'
             element={<UploadAnswerSheet />}

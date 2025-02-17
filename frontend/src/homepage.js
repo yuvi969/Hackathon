@@ -1,9 +1,11 @@
 import { Link } from 'react-router'
+import penimg from './penimg.png'
 function Homepage() {
   return (
     <>
       <div className='Homediv'>
-        <h1 className='appname'>OVERCLOCKERS</h1>
+        <img src={penimg} alt='logo' />
+        <h1 className='appname'>Red Pen</h1>
         <div className='subtitle-container'>
           <h3>Transparent Testing Solutions</h3>
         </div>
@@ -15,7 +17,6 @@ function Homepage() {
             <button className='studentloginbutton'>Student Login</button>
           </Link>
         </div>
-
         <Link to={'/register'}>
           <p>New Account</p>
         </Link>
